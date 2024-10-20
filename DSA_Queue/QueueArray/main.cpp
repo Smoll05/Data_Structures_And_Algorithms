@@ -3,25 +3,42 @@
 
 int main() {
     Queue* queue = new QueueArray();
+    char op;
+    int num;
 
-    cout << queue->dequeue() << endl;
-    cout << queue->peek() << endl;
-    queue->enqueue(1);
-    cout << queue->peek() << endl;
-    queue->enqueue(2);
-    queue->enqueue(3);
-    queue->enqueue(4);
-    queue->enqueue(5);
-    cout << "Size: " << queue->size() << endl;
-    cout << "Is Empty: " << queue->isEmpty() << endl;
-    cout << queue->peek() << endl;
-    cout << queue->dequeue() << endl;
-    cout << queue->dequeue() << endl;
-    cout << "Size: " << queue->size() << endl;
-    cout << queue->dequeue() << endl;
-    cout << queue->dequeue() << endl;
-    cout << "Is Empty: " << queue->isEmpty() << endl;
-    cout << queue->dequeue() << endl;
-    cout << queue->dequeue() << endl;
-    cout << "Is Empty: " << queue->isEmpty() << endl;
+    do {
+        cout << "Op: ";
+        cin >> op;
+
+        switch(op) {
+            case 'e':
+                cin >> num;
+                queue->enqueue(num);
+                break;
+
+            case 'd':
+                cout << queue->dequeue() << endl;
+                break;
+
+            case 'p':
+                cout << queue->peek() << endl;
+                break;
+
+            case 's':
+                queue->getSize();
+                break;
+
+            case 't':
+                cout << "Is Empty: " << queue->isEmpty() << endl;
+                break;
+
+            case 'i':
+                queue->print();
+                break;
+            
+            default:
+                cout << "Invalid Operation" << endl;
+        }
+
+    } while(op != 'x');
 }

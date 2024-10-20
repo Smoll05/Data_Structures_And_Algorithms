@@ -14,6 +14,7 @@ private:
 public:
     QueueArray() : front(0), rear(-1) {}
 
+
     void enqueue(int num) {
         if(rear == MAX_SIZE - 1) {
             cout << "Queue Overflow" << endl;
@@ -22,6 +23,7 @@ public:
 
         queue[++rear] = num;
     }
+
 
     int dequeue() {
         if(front > rear) {
@@ -32,6 +34,7 @@ public:
         return queue[front++];
     }
 
+
     int peek() {
         if(front > rear) {
             cout << "Queue is Empty" << endl;
@@ -41,12 +44,26 @@ public:
         return queue[front];
     }
 
-    int size() {
+
+    int getSize() {
         return (rear + 1) - front;
     }
+
 
     bool isEmpty() {
         return front > rear;
     }
 
+
+    void print() {
+        if(isEmpty()) {
+            cout << "Empty" << endl;
+            return;
+        }
+        
+        for(int i = front; i <= rear; i++) {
+            cout << queue[i] << " ";
+        }
+        cout << endl;
+    }
 };
