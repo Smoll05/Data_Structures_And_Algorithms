@@ -40,6 +40,6 @@ int main() {
                 cout << "Invalid operation" << endl;
         }
     } while (ch != 'x');
-	
+
     return 0;
 }
