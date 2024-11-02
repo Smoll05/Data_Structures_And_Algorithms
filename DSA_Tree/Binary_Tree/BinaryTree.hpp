@@ -1,0 +1,115 @@
+#include <iostream>
+#include <stdexcept>
+#include <string>
+#include <cstdlib>
+#include "Node.hpp"
+#include "Tree.hpp"
+
+using namespace std;
+
+class BinaryTree : public Tree {
+    Node* root;
+    int size;
+
+public:
+    BinaryTree() : root(nullptr), size(0) {}
+
+    Node* addRoot(int e) {
+        if(root) throw logic_error("Root already exist");
+
+        root = new Node();
+        root->val = e;
+        size++;
+        return root;
+    }
+
+    Node* addLeft(Node* p, int e) {
+        if(!p) throw logic_error("Parent does not exist");
+        if(p->left) throw logic_error("Left child already exist");
+
+        p->left = new Node();
+        p->left->val = e;
+        p->left->parent = p;
+        size++;
+        return p->left;
+    }
+
+    Node* addRight(Node* p, int e) {
+        if(!p) throw logic_error("Parent does not exist");
+        if(p->right) throw logic_error("Right child already exist");
+
+        p->right = new Node();
+        p->right->val = e;
+        p->right->parent = p;
+        size++;
+        return p->right;
+    }
+
+    Node* getRoot() {
+        return root;
+    }
+
+    int getSize() {
+        return size;
+    }
+
+    int remove(Node* n) {
+        if(!n) throw logic_error("Node does not exist");
+        if(n->left && n->right) throw logic_error("Cannot remove " + to_string(n->val));
+
+        // int ret = n->val;
+
+        // if(n == root) {
+        //     if(root->left || root->right) {
+        //         root = root->left ? root->left : root->right;
+        //         root->parent = nullptr;
+        //     } else root = nullptr;
+        // } else {
+        //     if(n->parent->left == n) {
+        //         if(n->left) {
+        //             n->left->parent = n->parent;
+        //             n->parent->left = n->left;
+        //         } else if(n->right) {
+        //             n->right->parent = n->parent;
+        //             n->parent->left = n->right;
+        //         } else {
+        //             n->parent->left = nullptr;
+        //         }
+        //     } else if(n->parent->right == n) {
+        //         if(n->left) {
+        //             n->left->parent = n->parent;
+        //             n->parent->right=  n->left;
+        //         } else if(n->right) {
+        //             n->right->parent = n->parent;
+        //             n->parent->right=  n->right;
+        //         } else {
+        //             n->parent->right = nullptr;
+        //         }
+        //     }
+        // }
+        
+        // free(n);
+        // size--;
+        // return ret;
+
+        int ret = n->val;
+        Node* child = n->left ? n->left : n->right;
+
+        if(n == root) {
+            root = child;
+            if(child) root->parent = nullptr;
+        } else {
+            if(n->parent->left == n) {
+                n->parent->left = child;
+            } else {
+                n->parent->right = child;
+            }
+            if(child) child->parent = n->parent;
+        }
+
+        size--;
+        free(n);
+        return ret;
+    }
+
+};
