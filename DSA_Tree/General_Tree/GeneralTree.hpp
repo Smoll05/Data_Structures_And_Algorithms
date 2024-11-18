@@ -2,6 +2,7 @@
 #include <stdexcept>
 #include <string>
 #include <cstdlib>
+#include <cmath>
 #include "Node.hpp"
 #include "Tree.hpp"
 
@@ -69,5 +70,42 @@ public:
 
         delete n;
         size--;
+    }
+
+    void preOrder(Node* p) {
+        if(!p) return;
+
+        cout << p->val << endl;
+        for(int i = 0; i < p->num_child; i++) {
+            preOrder(p->children[i]);
+        }
+    }
+
+    void inOrder(Node* p) {
+        if(!p) return;
+
+        int mid = p->num_child / 2;
+        for(int i = 0; i <= mid; i++) {
+            inOrder(p->children[i]);
+        }
+
+        cout << p->val << endl;
+
+        for(int i = mid + 1; i < p->num_child; i++) {
+            inOrder(p->children[i]);
+        }
+    }
+
+    void postOrder(Node* p) {
+        if(!p) return;
+
+        for(int i = 0; i < p->num_child; i++) {
+            postOrder(p->children[i]);
+        }
+        cout << p->val << endl;
+    }
+
+    void bsfPrint(Node* p) {
+
     }
 };

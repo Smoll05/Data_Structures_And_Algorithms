@@ -5,7 +5,13 @@
 using namespace std;
 
 int main(void) {
-    Tree* tree = new BinaryTree();
+    BinaryTree* tree = new BinaryTree();
+    BinaryTree* attach = new BinaryTree();
+
+    Node* attachRoot = attach->addRoot(5);
+    attach->addRight(attachRoot, 6);
+    attach->addLeft(attachRoot, 7);
+
     char op;
     int input, ind;
     Node* nodes[100];
@@ -61,6 +67,11 @@ int main(void) {
                 case 'D':
                     cin >> ind;
                     cout << "Depth of " << nodes[ind]->val << ": " << nodes[ind]->depth() << endl;
+                    break;
+
+                case '@':
+                    cin >> ind;
+                    tree->attachSibling(nodes[ind], attach);
                     break;
                 
                 case 'x':

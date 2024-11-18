@@ -44,6 +44,18 @@ int main() {
                     tree->remove(nodes[par]);
                     break;
 
+                case '1':
+                    tree->preOrder(tree->getRoot());
+                    break;
+
+                case '2':
+                    tree->inOrder(tree->getRoot());
+                    break;
+
+                case '3':
+                    tree->postOrder(tree->getRoot());
+                    break;
+
                 case 'x':
                     cout << "Exiting...";
                     break;

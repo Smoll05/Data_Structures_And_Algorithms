@@ -36,6 +36,10 @@ public:
     virtual void remove(Node*) = 0;
     virtual int getSize() = 0;
     virtual Node* getRoot() = 0;
+    virtual void preOrder(Node*) = 0;
+    virtual void inOrder(Node*) = 0;
+    virtual void postOrder(Node*) = 0;
+    virtual void bsfPrint(Node*) = 0;
 
     void print() {
         cout << "Size: " << getSize() << endl;

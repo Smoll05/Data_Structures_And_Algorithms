@@ -112,4 +112,20 @@ public:
         return ret;
     }
 
+    void attachSibling(Node* p, BinaryTree* t1) {
+        if(!p -> parent) throw logic_error("Node does not have a parent");
+
+        Node* parent = p->parent;
+        if(parent->left == p) {
+            if(parent->right) throw logic_error(to_string(p->val) + " already has sibling");
+
+            parent->right = t1->getRoot();
+            t1->getRoot()->parent = parent;
+        } else {
+            if(parent->left) throw logic_error(to_string(p->val) + " already has sibling");
+
+            parent->left = t1->getRoot();
+            t1->getRoot()->parent = parent;
+        }
+    }
 };

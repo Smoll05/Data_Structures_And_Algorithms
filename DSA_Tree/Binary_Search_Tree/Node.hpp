@@ -1,6 +1,8 @@
 #ifndef NODE_HPP
 #define NODE_HPP
 
+#include <algorithm>
+
 struct Node {
     int val;
     Node* left;
