@@ -1,6 +1,4 @@
-#ifndef NODE_HPP
-#define NODE_HPP
-
+#pragma once
 #include <algorithm>
 
 struct Node {
@@ -9,24 +7,13 @@ struct Node {
     Node* right;
     Node* parent;
 
-    int height() {
-        if(this == nullptr) {
-            return -1;
-        }
-
-        int leftHeight = left->height();
-        int rightHeight = right->height();
-
-        return std::max(leftHeight, rightHeight) + 1;
-    }
-
     int depth() {
-        if(parent == nullptr) {
-            return 0;
-        }
-
+        if(!parent) return 0;
         return parent->depth() + 1;
     }
-};
 
-#endif
+    int height() {
+        if(!this) return -1;
+        return std::max(left->height(), right->height()) + 1;
+    }
+};

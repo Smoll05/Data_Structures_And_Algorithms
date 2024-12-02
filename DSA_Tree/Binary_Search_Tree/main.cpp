@@ -1,20 +1,71 @@
 #include <iostream>
-#include <stack>
-#include "Tree.cpp"
-#include "Node.hpp"
-
+#include "BinarySearchTree.hpp"
 using namespace std;
 
-int main() {
-    BinaryTree* tree = new BinaryTree();
-    
-    tree->insert(1);
-    tree->insert(2);
-    tree->insert(3);
-    tree->insert(5);
-    tree->insert(7);
+int main(void) {
+    Tree* tree = new BinarySearchTree();
 
-    cout << tree->search(8);
+    char op;
+    int input, ind;
+    Node* nodes[100];
+    int res;
 
-    stack.push(1);
+    do {
+        try {
+            cout << "Op: ";
+            cin >> op;
+
+            switch (op) {
+                case 'Q':
+                    cin >> input;
+                    nodes[input] = tree->addRoot(input);
+                    if (nodes[input]) {
+                        cout << nodes[input]->val << " added as root" << endl;
+                    }
+                    break;
+                
+                case 'A':
+                    cin >> input;
+                    nodes[input] = tree->addNode(input);
+                    if (nodes[input]) {
+                        cout << nodes[input]->val << " added " << endl;
+                    }
+                    break;
+
+                case '-':
+                    cin >> ind;
+                    res = tree->remove(nodes[ind]);
+                    cout << "Removed " << res << endl;
+                    break;
+
+                case 'p':
+                    tree->print();
+                    break;
+
+                case 'P':
+                    tree->inorder();
+                    break;
+
+                case 'H':
+                    cin >> ind;
+                    cout << "Height of " << nodes[ind]->val << ": " << nodes[ind]->height() << endl;
+                    break;
+                
+                case 'D':
+                    cin >> ind;
+                    cout << "Depth of " << nodes[ind]->val << ": " << nodes[ind]->depth() << endl;
+                    break;
+                
+                case 'x':
+                    cout << "Exiting" << endl;
+                    break;
+                    default:
+                    cout << "Invalid operation" << endl;
+            }
+        } catch (exception& e) {
+            cout << e.what() << endl;
+        }
+    } while (op != 'x');
+
+    return 0;
 }

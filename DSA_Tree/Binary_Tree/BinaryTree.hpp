@@ -57,41 +57,6 @@ public:
         if(!n) throw logic_error("Node does not exist");
         if(n->left && n->right) throw logic_error("Cannot remove " + to_string(n->val));
 
-        // int ret = n->val;
-
-        // if(n == root) {
-        //     if(root->left || root->right) {
-        //         root = root->left ? root->left : root->right;
-        //         root->parent = nullptr;
-        //     } else root = nullptr;
-        // } else {
-        //     if(n->parent->left == n) {
-        //         if(n->left) {
-        //             n->left->parent = n->parent;
-        //             n->parent->left = n->left;
-        //         } else if(n->right) {
-        //             n->right->parent = n->parent;
-        //             n->parent->left = n->right;
-        //         } else {
-        //             n->parent->left = nullptr;
-        //         }
-        //     } else if(n->parent->right == n) {
-        //         if(n->left) {
-        //             n->left->parent = n->parent;
-        //             n->parent->right=  n->left;
-        //         } else if(n->right) {
-        //             n->right->parent = n->parent;
-        //             n->parent->right=  n->right;
-        //         } else {
-        //             n->parent->right = nullptr;
-        //         }
-        //     }
-        // }
-        
-        // free(n);
-        // size--;
-        // return ret;
-
         int ret = n->val;
         Node* child = n->left ? n->left : n->right;
 
